@@ -1,35 +1,61 @@
 import { makeAutoObservable } from "mobx";
 import { ToDoStore } from "./ToDoStore";
+import { conditions } from "../constants/constants";
 
-export default class MainStore {
-  ToDos = [];
+class MainStore {
+    ToDos = [];
 
-  constructor() {
-    makeAutoObservable(this);
-  }
+    constructor() {
+        makeAutoObservable(this);
+    }
 
-  addTodoItem(item) {
-    this.ToDos = this.ToDos.filter(({condition}) => condition);
-    this.ToDos.push(new ToDoStore(item));
-  }
+    highlightEvenTodoItems() {
+        this.ToDos = this.ToDos.map((item, index) => {
+            if (index % 2 !== 0 && item.highlight !== true) {
+                item.highlight = true;
+            } else if (index % 2 !== 0 && item.highlight === true) {
+                item.highlight = false;
+            }
+            return item;
+        });
+    }
 
-  removeFirstItem() {
-    this.ToDos.pop();
-  }
+    highlightOddTodoItems() {
+        this.ToDos = this.ToDos.map((item, index) => {
+            if (index % 2 === 0 && item.highlight !== true) {
+                item.highlight = true;
+            } else if (index % 2 === 0 && item.highlight === true) {
+                item.highlight === false;
+            }
+            return item;
+        });
+    }
 
-  removeLastItem() {
-    this.ToDos.shift();
-  }
+    addTodoItem(item) {
+        this.ToDos.unshift(new ToDoStore(item));
+    }
 
-  get SortedToDos() {
-    const rawArr = [];
-    this.ToDos.forEach((item) => {
-      if (item.weight === 0) {
-        rawArr.unshift(item);
-      } else if (item.weight === 100) {
-        rawArr.push(item);
-      }
-    })
-    return rawArr;
-  }
+    removeTodoItem(todoItem) {
+        this.ToDos = this.ToDos.filter((item) => item !== todoItem);
+    }
+
+    removeFirstItem() {
+        this.ToDos.shift();
+    }
+
+    removeLastItem() {
+        this.ToDos.pop();
+    }
+
+    get SortedToDos() {
+        const startedToDos = [...this.ToDos].filter(
+            ({ condition }) => condition === conditions.start
+        );
+        const completedToDos = [...this.ToDos].filter(
+            ({ condition }) => condition === conditions.complete
+        ).reverse();
+        return [...startedToDos, ...completedToDos];
+    }
 }
+
+export default new MainStore();

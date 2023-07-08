@@ -1,10 +1,10 @@
 import DeleteBtns from "../DeleteBtns/DeleteBtns";
-import Filter from "../Filter/Filter";
+import Highlighter from "../Highlighter/Highlighter";
 
 const ChangeBtns = () => {
   return (
     <>
-      <Filter />
+      <Highlighter />
       <DeleteBtns />
     </>
   );

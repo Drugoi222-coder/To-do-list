@@ -5,6 +5,12 @@ const Panel = () => {
   const mainStore = useMainStore();
   const [inputText, setInputText] = useState();
 
+  const handleClick = () => {
+    if (inputText) {
+      mainStore.addTodoItem(inputText)
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     e.target.reset();
@@ -14,7 +20,7 @@ const Panel = () => {
   return (
     <form onSubmit={handleSubmit} className="list__search-panel">
       <input onChange={(e) => setInputText(e.target.value)} type="text" className="list__input" />
-      <button onClick={() => mainStore.addTodoItem(inputText)} className="list__add-btn">Добавить</button>
+      <button onClick={handleClick} className="list__add-btn">Добавить</button>
     </form>
   );
 };

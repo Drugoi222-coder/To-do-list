@@ -7,7 +7,7 @@ import { MainStoreContext } from "../../hooks/mainStoreContext";
 import "./App.css";
 
 const App = observer(() => (
-  <MainStoreContext.Provider value={new MainStore()}>
+  <MainStoreContext.Provider value={MainStore}>
     <Panel />
     <ChangeBtns />
     <List />
