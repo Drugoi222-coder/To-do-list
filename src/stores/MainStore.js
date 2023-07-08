@@ -9,15 +9,16 @@ export default class MainStore {
   }
 
   addTodoItem(item) {
+    this.ToDos = this.ToDos.filter(({condition}) => condition);
     this.ToDos.push(new ToDoStore(item));
   }
 
   removeFirstItem() {
-    this.ToDos.shift();
+    this.ToDos.pop();
   }
 
   removeLastItem() {
-    this.ToDos.pop();
+    this.ToDos.shift();
   }
 
   get SortedToDos() {

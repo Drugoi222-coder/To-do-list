@@ -4,14 +4,23 @@ import { conditions } from "../constants/constants";
 export class ToDoStore {
     condition = conditions.start;
     weight = 0;
+    onUpdate = false;
 
     constructor(content) {
         makeAutoObservable(this);
         this.content = content;
     }
 
-    updateTodoItem() {
-        return this.content;
+    isOnUpdate() {
+        if (this.onUpdate === false) {
+            this.onUpdate = true;
+        } else {
+            this.onUpdate = false;
+        }
+    }
+
+    updateTodoItem(newContent) {
+        this.content = newContent;
     }
 
     completeTodoItem() {
@@ -26,5 +35,13 @@ export class ToDoStore {
 
     removeTodoItem() {
         this.condition = conditions.remove;
+    }
+
+    get onReadyTodoItem() {
+        return this.condition && this.content && !this.onUpdate;
+    }
+
+    get onUpdateTodoItem() {
+        return this.condition && this.content && this.onUpdate;
     }
 }

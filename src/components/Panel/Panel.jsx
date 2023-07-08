@@ -8,6 +8,7 @@ const Panel = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     e.target.reset();
+    setInputText("");
   }
 
   return (
