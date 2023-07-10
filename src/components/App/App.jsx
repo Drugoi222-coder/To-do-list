@@ -5,6 +5,7 @@ import { observer } from "mobx-react";
 import MainStore from "../../stores/MainStore";
 import { MainStoreContext } from "../../hooks/mainStoreContext";
 import "./App.css";
+import "normalize.css";
 
 const App = observer(() => (
   <MainStoreContext.Provider value={MainStore}>

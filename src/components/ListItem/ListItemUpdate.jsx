@@ -1,3 +1,6 @@
+import check from "../../assets/img/check.svg";
+import trashBin from "../../assets/img/trash_bin.svg";
+
 const ListItemUpdate = ({
     handleSubmit,
     isOnUpdate,
@@ -12,12 +15,14 @@ const ListItemUpdate = ({
             value={text}
             className="list__text"
         />
-        <button className="list__btn-update" onClick={isOnUpdate}>
-            <img src="" alt="Готово" />
-        </button>
-        <button className="list__btn-delete" onClick={removeItem}>
-            <img src="" alt="Удалить" />
-        </button>
+        <div className="list__btn-group">
+            <button className="list__btn-list-item" onClick={isOnUpdate}>
+                <img src={check} alt="Готово" />
+            </button>
+            <button className="list__btn-list-item" onClick={removeItem}>
+                <img src={trashBin} alt="Удалить" />
+            </button>
+        </div>
     </form>
 );
 

@@ -1,4 +1,5 @@
 import { useMainStore } from "../../hooks/mainStoreContext";
+import "./Highlighter.css";
 
 const Highlighter = () => {
     const mainStore = useMainStore();
@@ -8,10 +9,10 @@ const Highlighter = () => {
     return (
         <div className="list__filter">
             <p className="list__descr">Выделить элементы:</p>
-            <button onClick={highlightEvenTodoItems} className="list__btn-even">
+            <button onClick={highlightEvenTodoItems} className="list__btn">
                 Чётные
             </button>
-            <button onClick={highlightOddTodoItems} className="list__btn-odd">
+            <button onClick={highlightOddTodoItems} className="list__btn">
                 Нечётные
             </button>
         </div>

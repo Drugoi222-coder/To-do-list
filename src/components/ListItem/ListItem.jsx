@@ -3,6 +3,7 @@ import { conditions } from "../../constants/constants";
 import { useState } from "react";
 import ListItemReady from "./ListItemReady";
 import ListItemUpdate from "./ListItemUpdate";
+import "./ListItem.css";
 
 const handleSubmit = (e) => e.preventDefault();
 

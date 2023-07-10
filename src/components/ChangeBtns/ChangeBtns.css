@@ -1,0 +1,7 @@
+.list__change-btns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-size: 20px;
+    align-items: center;
+}

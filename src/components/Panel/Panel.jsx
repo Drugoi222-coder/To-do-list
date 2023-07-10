@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useMainStore } from "../../hooks/mainStoreContext";
+import "./Panel.css";
 
 const Panel = () => {
   const mainStore = useMainStore();

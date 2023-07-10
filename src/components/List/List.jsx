@@ -2,6 +2,7 @@ import { nanoid } from "nanoid";
 import { useMainStore } from "../../hooks/mainStoreContext";
 import ListItem from "../ListItem/ListItem";
 import { observer } from "mobx-react";
+import "./List.css";
 
 const List = observer(() => {
     const mainStore = useMainStore();
