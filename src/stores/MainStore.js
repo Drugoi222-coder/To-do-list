@@ -3,61 +3,80 @@ import { ToDoStore } from "./ToDoStore";
 import { conditions } from "../constants/constants";
 
 class MainStore {
-    ToDos = [];
+  toDos = [];
 
-    constructor() {
-        makeAutoObservable(this);
-    }
+  constructor() {
+    makeAutoObservable(this);
+  }
 
-    highlightEvenTodoItems() {
-        this.ToDos = this.SortedToDos.map((item) => {
-            item.highlight = false;
-            return item;
-        }).map((item, index) => {
-            if (index % 2 !== 0) {
-                item.highlight = true;
-            }
-            return item;
-        });
-    }
+  addTodoItem(item) {
+    this.toDos.unshift(new ToDoStore(item));
+  }
 
-    highlightOddTodoItems() {
-        this.ToDos = this.SortedToDos.map((item) => {
-            item.highlight = false;
-            return item;
-        }).map((item, index) => {
-            if (index % 2 === 0) {
-                item.highlight = true;
-            }
-            return item;
-        });
-    }
+  removeTodoItem(todoItem) {
+    this.toDos = this.toDos.filter((item) => item !== todoItem);
+  }
 
-    addTodoItem(item) {
-        this.ToDos.unshift(new ToDoStore(item));
-    }
+  highlightEvenTodoItems() {
+    this.toDos = [
+      ...this.startedToDos.map((item, index) => {
+        item.highlight = index % 2 !== 0;
+        return item;
+      }),
+      ...this.completedToDos
+        .map((item) => {
+          item.highlight = false;
+          return item;
+        })
+        .reverse(),
+    ];
+  }
 
-    removeTodoItem(todoItem) {
-        this.ToDos = this.ToDos.filter((item) => item !== todoItem);
-    }
+  highlightOddTodoItems() {
+    this.toDos = [
+      ...this.startedToDos.map((item, index) => {
+        item.highlight = index % 2 === 0;
+        return item;
+      }),
+      ...this.completedToDos
+        .map((item) => {
+          item.highlight = false;
+          return item;
+        })
+        .reverse(),
+    ];
+  }
 
-    removeFirstItem() {
-        this.ToDos.shift();
-    }
+  turnOffAllHighlight() {
+    this.toDos = this.toDos.map((item) => {
+      item.highlight = false;
+      return item;
+    });
+  }
 
-    removeLastItem() {
-        this.ToDos.pop();
-    }
+  removeFirstItem() {
+    this.toDos.shift();
+  }
 
-    get SortedToDos() {
-        const startedToDos = [...this.ToDos].filter(
-            ({ condition }) => condition === conditions.start
-        );
-        const completedToDos = [...this.ToDos]
-            .filter(({ condition }) => condition === conditions.complete)
-            .reverse();
-        return [...startedToDos, ...completedToDos];
-    }
+  removeLastItem() {
+    this.toDos.pop();
+  }
+
+  get completedToDos() {
+    return [...this.toDos].filter(
+      ({ condition }) => condition === conditions.complete
+    );
+  }
+
+  get startedToDos() {
+    return [...this.toDos].filter(
+      ({ condition }) => condition === conditions.start
+    );
+  }
+
+  get sortedToDos() {
+    return [...this.startedToDos, ...this.completedToDos.reverse()];
+  }
 }
 
 export default new MainStore();

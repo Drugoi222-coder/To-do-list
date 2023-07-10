@@ -1,6 +1,6 @@
 .list__delete-btns {
-    display: flex;
-    width: 44%;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  width: 44%;
+  align-items: center;
+  justify-content: space-between;
 }

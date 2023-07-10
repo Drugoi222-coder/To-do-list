@@ -10,8 +10,12 @@ const DeleteBtns = () => {
   return (
     <div className="list__delete-btns">
       <p className="list__descr">Удалить:</p>
-      <button onClick={removeFirstItem} className="list__btn">Первый элемент списка</button>
-      <button onClick={removeLastItem} className="list__btn">Последний элемент списка</button>
+      <button onClick={removeFirstItem} className="list__btn">
+        Первый элемент списка
+      </button>
+      <button onClick={removeLastItem} className="list__btn">
+        Последний элемент списка
+      </button>
     </div>
   );
 };

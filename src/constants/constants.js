@@ -1,4 +1,4 @@
 export const conditions = {
-    start: "start",
-    complete: "complete"
-}
+  start: "start",
+  complete: "complete",
+};

@@ -1,29 +1,29 @@
 .list__search-panel {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .list__input {
-    width: 88%;
-    outline: none;
-    padding: 10px;
-    border: 2px solid red;
-    border-radius: 10px;
-    font-size: 22px;
+  width: 88%;
+  outline: none;
+  padding: 10px;
+  border: 2px solid red;
+  border-radius: 10px;
+  font-size: 22px;
 }
 
 .list__add-btn {
-    width: 10%;
-    border-radius: 10px;
-    cursor: pointer;
-    border: none;
-    font-size: 22px;
-    background-color: red;
-    outline: none;
-    color: white;
-    transition: .2s;
+  width: 10%;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  font-size: 22px;
+  background-color: red;
+  outline: none;
+  color: white;
+  transition: 0.2s;
 }
 
 .list__add-btn:hover {
-    background-color: rgb(200, 0, 0);
+  background-color: rgb(180, 0, 0);
 }

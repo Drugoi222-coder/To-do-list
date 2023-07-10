@@ -1,25 +1,25 @@
 .list__filter {
-    display: flex;
-    justify-content: space-between;
-    width: 29%;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 43%;
+  align-items: center;
 }
 
 .list__descr {
-    margin: 0;
+  margin: 0;
 }
 
 .list__btn {
-    padding: 10px;
-    outline: none;
-    border: none;
-    background-color: red;
-    color: white;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: .2s;
+  padding: 10px;
+  outline: none;
+  border: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.2s;
 }
 
 .list__btn:hover {
-    background-color: rgb(200, 0, 0);
+  background-color: rgb(180, 0, 0);
 }
