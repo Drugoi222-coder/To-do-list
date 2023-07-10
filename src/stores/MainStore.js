@@ -4,7 +4,7 @@ import { conditions } from "../constants/constants";
 
 class MainStore {
   toDos = [];
-
+  
   constructor() {
     makeAutoObservable(this);
   }
@@ -27,8 +27,7 @@ class MainStore {
         .map((item) => {
           item.highlight = false;
           return item;
-        })
-        .reverse(),
+        }).reverse()
     ];
   }
 
@@ -42,8 +41,7 @@ class MainStore {
         .map((item) => {
           item.highlight = false;
           return item;
-        })
-        .reverse(),
+        }).reverse()
     ];
   }
 
@@ -55,17 +53,28 @@ class MainStore {
   }
 
   removeFirstItem() {
-    this.toDos.shift();
+    if (this.startedToDos.length < 1) {
+      this.toDos = [...this.completedToDos.reverse()].slice(0,-1);
+    } else {
+      this.toDos = [...this.startedToDos,...this.completedToDos.reverse()].slice(1);
+    }
   }
 
   removeLastItem() {
-    this.toDos.pop();
+    if (this.startedToDos.length < 1) {
+      this.toDos = [...this.startedToDos,...this.completedToDos.reverse()].slice(1);
+    } else if (this.startedToDos.length > 0 && this.completedToDos.length > 0) {
+      this.toDos = [...this.startedToDos,...this.completedToDos].slice(0, -1);
+    } else {
+      this.toDos = [...this.startedToDos,...this.completedToDos.reverse()].slice(0,-1);
+    }
   }
 
   get completedToDos() {
-    return [...this.toDos].filter(
+    const completedArr =  [...this.toDos].filter(
       ({ condition }) => condition === conditions.complete
-    );
+    );  
+    return completedArr.reverse();
   }
 
   get startedToDos() {
@@ -75,7 +84,7 @@ class MainStore {
   }
 
   get sortedToDos() {
-    return [...this.startedToDos, ...this.completedToDos.reverse()];
+    return [...this.startedToDos, ...this.completedToDos];
   }
 }
 

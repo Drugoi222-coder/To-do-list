@@ -11,7 +11,7 @@ const List = observer(() => {
     <ul className="list__list">
       <AnimatePresence>
         {mainStore.sortedToDos.map((item) => (
-          <ListItem exit={{ y: -15, opacity: 0 }} key={item.id} store={item} />
+          <ListItem key={item.id} store={item} />
         ))}
       </AnimatePresence>
     </ul>
